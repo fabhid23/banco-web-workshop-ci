@@ -1,0 +1,35 @@
+name: 'Banco Web - CI'
+
+# gatilhos  / triggers
+# - quando eu pressionar um botao
+# - em um perioso especifico de tempo
+# - alteracoes
+on: 
+  workflow_dispatch:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+
+    env:
+      API_BASE_URL: 'http://localhost:3000'
+      PORT: 40000
+
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar deps
+        run: npm install
+
+      - name: Iniciar o servidor de mocks
+        run: npm run mock-server
+          
+      - name: Iniciar o servidor da aplicacao
+        run: npm install
+
+      - name: Executar os testes
+        run: npx cypress run
+        
