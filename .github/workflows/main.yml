@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
+  cypress-tests:
     runs-on: ubuntu-latest
 
 
